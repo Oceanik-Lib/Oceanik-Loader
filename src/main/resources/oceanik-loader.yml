@@ -1,4 +1,4 @@
-target: 'https://raw.githubusercontent.com/Oceanik-Lib/test-repo/main/test.json'
+target: 'https://raw.githubusercontent.com/Oceanik-Lib/test-repo/main/version/latest.json'
 proxy:
   type: 'socks'
   ip: '127.0.0.1'

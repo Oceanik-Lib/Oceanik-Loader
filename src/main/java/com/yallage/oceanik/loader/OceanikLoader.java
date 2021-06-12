@@ -1,6 +1,7 @@
 package com.yallage.oceanik.loader;
 
 import com.google.common.base.Strings;
+import com.google.gson.Gson;
 import com.yallage.oceanik.loader.util.IO;
 import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
@@ -10,9 +11,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.logging.Logger;
 
 /**
@@ -36,14 +38,15 @@ public class OceanikLoader {
      */
     @Getter private int status = 0;
 
-    /** The booter of Oceanik. */
     @Getter private final JavaPlugin booter;
+    @Getter private final File libFolder;
 
     private final Logger logger = Logger.getLogger("Oceanik"); // TODO
 
     private OceanikLoader(JavaPlugin booter) {
         instance = this;
         this.booter = booter;
+        this.libFolder = new File(booter.getDataFolder().getParentFile().getParentFile(), "libs/");
     }
 
     /** Check if the Oceanik is loaded. */
@@ -72,14 +75,19 @@ public class OceanikLoader {
                 .loadConfiguration(IO.getResourceReader(booter, "oceanik-loader.yml"));
         var url = config.getString("target");
         Proxy proxy = getProxyFromConfig(config.getConfigurationSection("proxy"));
-        try { // TODO: only for testing.
-            System.out.println(IO.readFromURL(url, proxy));
-            IO.downloadFile(url, new File(booter.getDataFolder(), "test.yml"), proxy);
-        } catch (IOException e) {
+        try {
+            logger.info("Fetching the latest version information.");
+            var info = new Gson().fromJson(IO.readFromURL(url, proxy), VersionInfo.class);
+            logger.info(String.format("Downloading the latest Oceanik %s.", info.getTag()));
+            var file = IO.safeDownloadFile(info.getUrl(),
+                    new File(libFolder, "Oceanik_" + info.getTag() + ".jar"),
+                    proxy, info.getSha256());
+            var loader = new URLClassLoader(new URL[]{file.toURI().toURL()});
+            return 1;
+        } catch (Exception e) {
             e.printStackTrace();
-            return -1;
         }
-        return 1;
+        return -1;
     }
 
     /** Get the proxy settings from 'proxy' {@link ConfigurationSection}. */
