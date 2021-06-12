@@ -5,10 +5,9 @@ import lombok.Getter;
 /**
  * @author Milkory
  */
-@SuppressWarnings("unused")
 public class VersionInfo {
-    @Getter private int id;
-    @Getter private String tag;
-    @Getter private String url;
-    @Getter private String sha256;
+    @Getter int id;
+    @Getter String tag;
+    @Getter String url;
+    @Getter String sha256;
 }

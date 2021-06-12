@@ -2,7 +2,7 @@ package com.yallage.oceanik.loader.util;
 
 import com.google.common.hash.Hashing;
 import com.google.common.io.Files;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
 
 import java.io.*;
 import java.net.Proxy;
@@ -59,7 +59,7 @@ public class IO {
         } else throw new IllegalArgumentException("File integrity verification failed - " + tempFile.getPath());
     }
 
-    public static InputStreamReader getResourceReader(JavaPlugin plugin, String file) {
+    public static InputStreamReader getResourceReader(Plugin plugin, String file) {
         return new InputStreamReader(Objects.requireNonNull(plugin.getResource(file)));
     }
 
