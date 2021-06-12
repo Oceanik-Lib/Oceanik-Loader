@@ -28,8 +28,8 @@ public class OceanikLoader {
 
     /** Get an instance of Oceanik loader. */
     @NotNull public static OceanikLoader getInstance(JavaPlugin booter) {
-        if (instance != null) return instance;
-        else return new OceanikLoader(booter);
+        if (instance == null) instance = new OceanikLoader(booter);
+        return instance;
     }
 
     /**
