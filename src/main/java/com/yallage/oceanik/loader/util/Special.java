@@ -10,7 +10,7 @@ import java.lang.invoke.MethodType;
 import java.net.URL;
 
 /**
- * Special utilities, which is unsafe.
+ * Special utilities, which are unsafe.
  *
  * @author Milkory
  */
