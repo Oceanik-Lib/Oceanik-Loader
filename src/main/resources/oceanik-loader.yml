@@ -1,5 +1,1 @@
-target: 'https://raw.githubusercontent.com/Oceanik-Lib/test-repo/main/version/latest.json'
-proxy:
-  type: 'socks'
-  ip: '127.0.0.1'
-  port: 1080
+target: 'https://repository.hanbings.com/releases/resource/oceanik/version/latest.json'

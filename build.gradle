@@ -10,11 +10,13 @@ version '1.0.0-alpha.1'
 repositories {
     mavenCentral()
     maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
-    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots' }
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url 'https://repository.hanbings.com/snapshots/'}
 }
 
 dependencies {
     implementation 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
+    implementation 'com.yallage.oceanik:Oceanik:1.0.0-alpha.1'
 
     implementation 'org.jetbrains:annotations:21.0.1'
     testImplementation 'org.mockito:mockito-core:3.+'

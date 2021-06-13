@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 /**
- * IO utils for Oceanik loader.
+ * IO utilities for Oceanik loader.
  *
  * @author Milkory
  */

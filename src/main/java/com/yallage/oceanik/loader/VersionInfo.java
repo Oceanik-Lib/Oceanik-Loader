@@ -1,13 +1,16 @@
 package com.yallage.oceanik.loader;
 
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * @author Milkory
  */
+@Getter
+@ToString
 public class VersionInfo {
-    @Getter int id;
-    @Getter String tag;
-    @Getter String url;
-    @Getter String sha256;
+    int id;
+    String tag;
+    String url;
+    String sha256;
 }

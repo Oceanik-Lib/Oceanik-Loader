@@ -3,6 +3,7 @@ package com.yallage.oceanik.loader;
 import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.yallage.oceanik.loader.util.IO;
+import com.yallage.oceanik.loader.util.Special;
 import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -13,8 +14,6 @@ import org.jetbrains.annotations.Nullable;
 import java.io.File;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.logging.Logger;
 
 /**
@@ -66,11 +65,12 @@ public class OceanikLoader {
     public int loadOceanik() {
         if (isLoaded()) return 0;
         if (isFailed()) return -2;
-        return forceLoadOceanik();
+        return status = forceLoadOceanik();
     }
 
     /** Force to load Oceanik. Mostly same as {@link #loadOceanik()} except ignoring failures and whether is already loaded. */
     public int forceLoadOceanik() {
+        // Check if the Oceanik file is already existed.
         var config = YamlConfiguration
                 .loadConfiguration(IO.getResourceReader(booter, "oceanik-loader.yml"));
         var url = config.getString("target");
@@ -79,13 +79,16 @@ public class OceanikLoader {
             logger.info("Fetching the latest version information.");
             var info = new Gson().fromJson(IO.readFromURL(url, proxy), VersionInfo.class);
             logger.info(String.format("Downloading the latest Oceanik %s.", info.getTag()));
+            var sha256 = IO.readFromURL(info.getSha256(), proxy);
             var file = IO.safeDownloadFile(info.getUrl(),
                     new File(libFolder, "Oceanik_" + info.getTag() + ".jar"),
-                    proxy, info.getSha256());
-            var loader = new URLClassLoader(new URL[]{file.toURI().toURL()});
+                    proxy, sha256);
+            logger.info(String.format("Loading Oceanik %s.", info.getTag()));
+            Special.addURL(file);
             return 1;
-        } catch (Exception e) {
+        } catch (Throwable e) {
             e.printStackTrace();
+            logger.severe("Failed to load Oceanik. You can ask the community for some help.");
         }
         return -1;
     }
