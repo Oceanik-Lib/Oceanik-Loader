@@ -19,7 +19,7 @@ public class OceanikMain extends JavaPlugin {
     @SneakyThrows @Override public void onLoad() {
         var result = OceanikLoader.getInstance(this).loadOceanik();
         if (result >= 0) {
-            OPluginManager.getInstance().loadPlugin(this);
+            this.oceanikPlugin = OPluginManager.getInstance().loadPlugin(this);
         } else throw new RuntimeException("Oceanik not loaded.");
     }
 
