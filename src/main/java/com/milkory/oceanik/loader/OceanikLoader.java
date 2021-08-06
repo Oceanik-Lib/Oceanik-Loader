@@ -1,9 +1,9 @@
-package com.yallage.oceanik.loader;
+package com.milkory.oceanik.loader;
 
 import com.google.common.base.Strings;
 import com.google.gson.Gson;
-import com.yallage.oceanik.loader.util.IO;
-import com.yallage.oceanik.loader.util.Special;
+import com.milkory.oceanik.loader.util.IO;
+import com.milkory.oceanik.loader.util.Special;
 import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;

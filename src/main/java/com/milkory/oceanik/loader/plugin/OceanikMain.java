@@ -1,6 +1,6 @@
-package com.yallage.oceanik.loader.plugin;
+package com.milkory.oceanik.loader.plugin;
 
-import com.yallage.oceanik.loader.OceanikLoader;
+import com.milkory.oceanik.loader.OceanikLoader;
 import com.yallage.oceanik.plugin.OPluginManager;
 import com.yallage.oceanik.plugin.OceanikPlugin;
 import lombok.Getter;

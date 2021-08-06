@@ -4,7 +4,7 @@ plugins {
     id 'io.freefair.lombok' version '6.0.0-m2'
 }
 
-group 'com.yallage.oceanik'
+group 'com.milkory.oceanik'
 version '1.0.0-alpha.1'
 
 repositories {
@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     implementation 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
-    implementation 'com.yallage.oceanik:Oceanik:1.0.0-alpha.1'
+    implementation 'com.milkory.oceanik:Oceanik:1.0.0-alpha.1'
 
     implementation 'org.jetbrains:annotations:21.0.1'
     testImplementation 'org.mockito:mockito-core:3.+'

@@ -1,4 +1,4 @@
-package com.yallage.oceanik.loader.util;
+package com.milkory.oceanik.loader.util;
 
 import com.google.common.hash.Hashing;
 import com.google.common.io.Files;

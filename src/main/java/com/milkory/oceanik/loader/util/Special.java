@@ -1,4 +1,4 @@
-package com.yallage.oceanik.loader.util;
+package com.milkory.oceanik.loader.util;
 
 import com.google.common.annotations.Beta;
 import lombok.SneakyThrows;
