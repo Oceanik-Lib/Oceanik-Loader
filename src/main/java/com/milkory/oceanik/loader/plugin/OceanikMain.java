@@ -1,8 +1,8 @@
 package com.milkory.oceanik.loader.plugin;
 
 import com.milkory.oceanik.loader.OceanikLoader;
-import com.yallage.oceanik.plugin.OPluginManager;
-import com.yallage.oceanik.plugin.OceanikPlugin;
+import com.milkory.oceanik.plugin.OPluginManager;
+import com.milkory.oceanik.plugin.OceanikPlugin;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.plugin.java.JavaPlugin;

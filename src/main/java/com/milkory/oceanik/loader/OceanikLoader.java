@@ -2,6 +2,7 @@ package com.milkory.oceanik.loader;
 
 import com.google.common.base.Strings;
 import com.google.gson.Gson;
+import com.milkory.oceanik.Oceanik;
 import com.milkory.oceanik.loader.util.IO;
 import com.milkory.oceanik.loader.util.Special;
 import lombok.Getter;
@@ -70,6 +71,7 @@ public class OceanikLoader {
 
     /** Force to load Oceanik. Mostly same as {@link #loadOceanik()} except ignoring failures and whether is already loaded. */
     public int forceLoadOceanik() {
+        if (checkIfLoaded()) return 1;
         // Check if the Oceanik file is already existed.
         var config = YamlConfiguration
                 .loadConfiguration(IO.getResourceReader(booter, "oceanik-loader.yml"));
@@ -85,6 +87,7 @@ public class OceanikLoader {
                     proxy, sha256);
             logger.info(String.format("Loading Oceanik %s.", info.getTag()));
             Special.addURL(file);
+            ignoreReturn(Oceanik.getInstance()); // initialize
             return 1;
         } catch (Throwable e) {
             e.printStackTrace();
@@ -116,6 +119,18 @@ public class OceanikLoader {
             }
         }
         return Proxy.NO_PROXY;
+    }
+
+    private static boolean checkIfLoaded() {
+        try {
+            ignoreReturn(Oceanik.getInstance());
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    private static void ignoreReturn(Object any) {
     }
 
 }
